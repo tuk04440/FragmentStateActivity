@@ -11,8 +11,11 @@ class MainActivity : AppCompatActivity() {
 
         // Fragment created using factory method and added dynamically using fragmentTransaction
         // argument is the number of sides the die will have
-        supportFragmentManager.beginTransaction()
-            .add(R.id.diceFragmentContainer, DiceFragment.newInstance(6))
-            .commit()
+        if(savedInstanceState == null)
+            supportFragmentManager.beginTransaction()
+                .add(R.id.diceFragmentContainer, DiceFragment.newInstance(6))
+                .addToBackStack(null)
+                .setReorderingAllowed(true)
+                .commit()
     }
 }
